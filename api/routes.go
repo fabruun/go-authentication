@@ -3,6 +3,7 @@ package api
 import (
 	"net/http"
 
+	"github.com/fabruun/go-authentication/authentication"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 )
@@ -21,7 +22,7 @@ func loadRoutes() *chi.Mux {
 }
 
 func loadAuthenticationRoutes(router chi.Router) {
-	service := application.Authentication{}
+	service := authentication.Authentication{}
 
-	router
+	router.Post("/register", service.Register())
 }

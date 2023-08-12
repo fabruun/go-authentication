@@ -19,3 +19,13 @@ type User struct {
 	UpdatedAt time.Time `json:"updated_at"`
 	Token     string    `json:"token"`
 }
+
+func Get(email string) *User {
+	var users *Users
+	for _, user := range users.Users {
+		if user.Email == email {
+			return &user
+		}
+	}
+	return nil
+}
