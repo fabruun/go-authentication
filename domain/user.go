@@ -1,7 +1,6 @@
 package domain
 
 import (
-	"crypto"
 	"time"
 
 	"github.com/google/uuid"
@@ -12,11 +11,11 @@ type Users struct {
 }
 
 type User struct {
-	ID        uuid.UUID   `json:"id"`
-	Name      string      `json:"name"`
-	Email     string      `json:"email"`
-	Password  crypto.Hash `json:"password"`
-	CreatedAt time.Time   `json:"created_at"`
-	UpdatedAt time.Time   `json:"updated_at"`
-	Token     string      `json:"token"`
+	ID        uuid.UUID `json:"id"`
+	Name      string    `json:"name"`
+	Email     string    `json:"email"`
+	Password  []byte    `json:"password"`
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
+	Token     string    `json:"token"`
 }

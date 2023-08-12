@@ -1,6 +1,7 @@
-package application
+package tokens
 
 import (
+	"log"
 	"time"
 
 	"github.com/fabruun/go-authentication/domain"
@@ -21,7 +22,8 @@ func (p *JwtTokenGenerator) GenerateToken(u *domain.User) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	signedString, err := token.SignedString(signingKey)
 	if err != nil {
-		panic(err)
+		log.Fatalf("Failed to convert token to string. Error: %v", err)
+		return
 	}
 	u.Token = signedString
 }

@@ -1,4 +1,4 @@
-package application
+package tokens
 
 const (
 	Secret        = "secret"
