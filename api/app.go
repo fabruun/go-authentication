@@ -11,7 +11,7 @@ type App struct {
 }
 
 func New() *App {
-	app := App{
+	app := &App{
 		router: loadRoutes(),
 	}
 	return app

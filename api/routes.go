@@ -24,5 +24,5 @@ func loadRoutes() *chi.Mux {
 func loadAuthenticationRoutes(router chi.Router) {
 	service := authentication.Authentication{}
 
-	router.Post("/register", service.Register())
+	router.Post("/register", service.Register)
 }

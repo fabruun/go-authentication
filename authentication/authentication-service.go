@@ -57,13 +57,18 @@ func (p *Authentication) checkPassword(user *domain.User, password string) error
 	return nil
 }
 
-func (p *Authentication) Register() {
-	request := http.Request{}
+func (p *Authentication) Register(w http.ResponseWriter, req *http.Request) {
+	data := contracts.CreateNewUser{
+		Name:     req.PostFormValue("name"),
+		Email:    req.PostFormValue("email"),
+		Password: req.PostFormValue("password"),
+	}
 	jwtTokenGenerator := tokens.JwtTokenGenerator{}
-	hashedPassword := p.getHashedPassword(request.Password)
-	user := p.createUserObject(&request)
+	hashedPassword := p.getHashedPassword(data.Password)
+	user := p.createUserObject(&data)
 	user.Password = hashedPassword
 	jwtTokenGenerator.GenerateToken(&user)
+	w.WriteHeader(http.StatusCreated)
 }
 
 func (p *Authentication) getHashedPassword(password string) []byte {
